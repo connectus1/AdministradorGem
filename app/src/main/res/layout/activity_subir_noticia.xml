@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.Noticias.SubirNoticias.SubirNoticia">
+
+        <ImageView
+            android:id="@+id/imgNoticia"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/degradado"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btnImagenNoticia"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:background="@android:drawable/screen_background_dark_transparent"
+            android:fitsSystemWindows="true"
+            android:onClick="setBtnImgNoticia"
+            android:src="@drawable/ic_foto"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtTituloNoticia"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:lines="1"
+            android:textColorHint="@color/blanco"
+            app:layout_constraintBottom_toBottomOf="@+id/imgNoticia"
+            app:layout_constraintEnd_toEndOf="@+id/btnImagenNoticia"
+            app:layout_constraintStart_toStartOf="@+id/btnImagenNoticia">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="TITULO DE NOTICIA"
+                android:textColor="@color/blanco"
+                android:textStyle="bold" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnSubirNoticia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="@color/verde"
+            android:clickable="true"
+            android:onClick="setBtnEnviar"
+            app:fabCustomSize="50dp"
+            app:backgroundTint="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_cargando" />
+
+        <EditText
+            android:id="@+id/txtDescripcionNoticia"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="30dp"
+            android:background="@null"
+            android:ems="10"
+            android:gravity="top|start"
+            android:hint="Descripcion de itemNoticia"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/negro"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.489"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgNoticia" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

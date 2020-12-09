@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_chats">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.gem.administradorgem.ui.Home.HomeFragment"
+        android:label="Inicio"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_chats"
+        android:name="com.gem.administradorgem.Fragment.CargarUsuarios.FragmentUsuarios"
+        android:label="Mensajes"
+        tools:layout="@layout/fragment_usuarios" />
+
+    <fragment
+        android:id="@+id/nav_alumnos"
+        android:name="com.gem.administradorgem.ui.Fragment_Alumnos.AlumnosFragment"
+        android:label="Alumnos"
+        tools:layout="@layout/fragment_alumnos" />
+
+    <fragment
+        android:id="@+id/nav_tutores"
+        android:name="com.gem.administradorgem.ui.Fragment_Tutores.TutoresFragment"
+        android:label="Tutores"
+        tools:layout="@layout/fragment_tutores" />
+    <fragment
+        android:id="@+id/nav_noticias"
+        android:name="com.gem.administradorgem.Fragment.Noticias.CargarNoticias.FragmentNoticias"
+        android:label="Noticias"
+        tools:layout="@layout/fragment_noticias" />
+
+</navigation>

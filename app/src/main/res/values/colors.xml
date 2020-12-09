@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary2">#0E0F17</color>
+    <color name="colorPrimary">#181927</color>
+
+    <color name="itemDrawer">#1722C1</color>
+
+
+
+    <color name="colorPrimarycopia">#2C9DF6</color>
+
+    <color name="indigo">#4F69C9</color>
+    <color name="Naranja">#F44611</color>
+    <color name="Morado">#4C2882</color>
+
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccentLight">#E8FA518F</color>
+
+    <color name="negro">#000000</color>
+
+    <color name="colorBlancoTransparente">#cccccc</color>
+    <color name="rosafuerte">#FCC3DA</color>
+    <color name="blanco">#FFFFFF</color>
+
+    <color name="colorTittle">#055FCA</color>
+
+    <color name="facebook">#3077CB</color>
+    <color name="facebook2">#4F7DC5</color>
+
+    <color name="youtube">#F93A34</color>
+    <color name="youtube2">#FA6E6A</color>
+
+    <color name="twitter">#3F95FC</color>
+    <color name="twitter2">#6FA0F7</color>
+
+    <color name="morado">#8E2CF6</color>
+    <color name="secundario">#D54596</color>
+
+    <color name="verde">#ACD3B3</color>
+    <color name="black_overlay">#66000000</color>
+</resources>

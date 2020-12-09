@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <LinearLayout
+        android:id="@+id/lnContenedor"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/imgChatAlumno"
+        android:layout_width="40dp"
+        android:layout_height="50dp"
+
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="9dp"
+        app:lottie_autoPlay="true"
+        app:lottie_imageAssetsFolder="assets"
+        app:lottie_fileName="visita.json"
+
+        android:layout_gravity="top"/>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardMensaje"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+
+            android:layout_gravity="top"
+
+            android:backgroundTint="@color/verde"
+            app:cardCornerRadius="15dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1">
+            <TextView
+
+                android:id="@+id/txtMensaje"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="10dp"
+
+                android:text="Hola"
+                android:textColor="#353535"
+
+
+                android:textSize="15sp"
+                />
+        </androidx.cardview.widget.CardView>
+
+
+    <ImageView
+        android:id="@+id/imgChatEscuela"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="9dp"
+        android:background="@drawable/style_imagenes"
+
+        android:src="@drawable/logo_gem"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:layout_gravity="top"/>
+    </LinearLayout>

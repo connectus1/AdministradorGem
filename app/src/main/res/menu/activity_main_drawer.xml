@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_chats"
+            android:title="Chats"
+            android:icon="@drawable/ic_chat"
+            android:checkable="true">
+        </item>
+
+        <item
+            android:id="@+id/nav_alumnos"
+            android:checkable="true"
+            android:icon="@drawable/icono_alumno"
+            android:title="Alumnos" />
+        <item
+            android:id="@+id/nav_tutores"
+            android:checkable="true"
+            android:icon="@drawable/ic_tutor"
+            android:title="Tutores" />
+
+        <item
+            android:id="@+id/nav_noticias"
+            android:icon="@drawable/ic_noticias"
+            android:title="Noticias"/>
+    </group>
+</menu>

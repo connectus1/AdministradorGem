@@ -1,0 +1,254 @@
+{
+  "project_info": {
+    "project_number": "907857702221",
+    "firebase_url": "https://conalep360.firebaseio.com",
+    "project_id": "conalep360",
+    "storage_bucket": "conalep360.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:907857702221:android:b739b68f0bf9c56cd45b04",
+        "android_client_info": {
+          "package_name": "com.conalep.admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "907857702221-hpq80ot0h63eud5tngln2prlpnb8g2iu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.conalep.admin",
+            "certificate_hash": "5921839b73647608b9e8817d1110762f7b67ead3"
+          }
+        },
+        {
+          "client_id": "907857702221-m9n56f60n4tt3sjajasoqa3kmaume0hq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAAiiGvwtoNuvxKtxSyOXfmT0KsFLHQaY"
+        },
+        {
+          "current_key": "AIzaSyBZi0dEBVf20g28EVpm_kZvktklrMwY_-Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "907857702221-m9n56f60n4tt3sjajasoqa3kmaume0hq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "907857702221-ii1utfkcjightr6aq4gdj957le8fd0oc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ios.conalep360"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:907857702221:android:059987f9b9267bb9d45b04",
+        "android_client_info": {
+          "package_name": "com.conalep.conalep360"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "907857702221-elqsf08d4c140d8t1i0751kbdo6pcm9c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.conalep.conalep360",
+            "certificate_hash": "ea56388504656e79f092c5646be8ecbe25eb93fb"
+          }
+        },
+        {
+          "client_id": "907857702221-m9n56f60n4tt3sjajasoqa3kmaume0hq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAAiiGvwtoNuvxKtxSyOXfmT0KsFLHQaY"
+        },
+        {
+          "current_key": "AIzaSyBZi0dEBVf20g28EVpm_kZvktklrMwY_-Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "907857702221-m9n56f60n4tt3sjajasoqa3kmaume0hq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "907857702221-ii1utfkcjightr6aq4gdj957le8fd0oc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ios.conalep360"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:907857702221:android:76c225f988b0b4c2d45b04",
+        "android_client_info": {
+          "package_name": "com.gem.administradorgem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "907857702221-gtolg2ic8dpi7edt4fcdam8rnh7jke49.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gem.administradorgem",
+            "certificate_hash": "a98275cf5a53a69fa540066e1b000ed7d563101c"
+          }
+        },
+        {
+          "client_id": "907857702221-m9n56f60n4tt3sjajasoqa3kmaume0hq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAAiiGvwtoNuvxKtxSyOXfmT0KsFLHQaY"
+        },
+        {
+          "current_key": "AIzaSyBZi0dEBVf20g28EVpm_kZvktklrMwY_-Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "907857702221-m9n56f60n4tt3sjajasoqa3kmaume0hq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "907857702221-ii1utfkcjightr6aq4gdj957le8fd0oc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ios.conalep360"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:907857702221:android:72593ead2ac6afcad45b04",
+        "android_client_info": {
+          "package_name": "com.gem.gem360"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "907857702221-nh6erd5dk00qq4cenercgoaqubaffd7g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gem.gem360",
+            "certificate_hash": "7752b069fdab3746568a07ffeec3147c604591a4"
+          }
+        },
+        {
+          "client_id": "907857702221-tsqte2cfk9852epi7kt0d9tp9ce4cf77.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gem.gem360",
+            "certificate_hash": "d634bede82131233311ad81dc8548002254fca21"
+          }
+        },
+        {
+          "client_id": "907857702221-m9n56f60n4tt3sjajasoqa3kmaume0hq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAAiiGvwtoNuvxKtxSyOXfmT0KsFLHQaY"
+        },
+        {
+          "current_key": "AIzaSyBZi0dEBVf20g28EVpm_kZvktklrMwY_-Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "907857702221-m9n56f60n4tt3sjajasoqa3kmaume0hq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "907857702221-ii1utfkcjightr6aq4gdj957le8fd0oc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ios.conalep360"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:907857702221:android:a06d3927b7821c5ed45b04",
+        "android_client_info": {
+          "package_name": "com.ios.conalep360"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "907857702221-k6sb4mjcr7s44lv143d6uikqia22kji6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ios.conalep360",
+            "certificate_hash": "bb0d2a9445c6fd91716c27c6a8a3e5fffed9a501"
+          }
+        },
+        {
+          "client_id": "907857702221-m9n56f60n4tt3sjajasoqa3kmaume0hq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAAiiGvwtoNuvxKtxSyOXfmT0KsFLHQaY"
+        },
+        {
+          "current_key": "AIzaSyBZi0dEBVf20g28EVpm_kZvktklrMwY_-Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "907857702221-m9n56f60n4tt3sjajasoqa3kmaume0hq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "907857702221-ii1utfkcjightr6aq4gdj957le8fd0oc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ios.conalep360"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
