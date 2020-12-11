@@ -133,19 +133,7 @@ public class SubirNoticia extends AppCompatActivity {
         txtTitulo = findViewById(R.id.txtTituloNoticia);
         txtNoticia = findViewById(R.id.txtDescripcionNoticia);
 
-        int index = getSharedPreferences("ADMIN",Context.MODE_PRIVATE).getInt("index",0);
-        String storageUrl[] = new String[]{
-                /*Mante*/"gs://mante",
-                /*Matamoros*/"gs://matamoros",
-                /*Miguel Aleman*/"gs://miguel_aleman",
-                /*Nuevo Laredo*/"gs://nuevo_laredo",
-                /*Reynosa*/"gs://reynosa",
-                /*Rio Bravo*/"gs://rio_bravo",
-                /*Tampico*/"gs://tampico/",
-                /*Victoria*/"gs://victoria_1",
-                /*Cast*/"gs://cast_matamoros"
-        };
-        mStorageRef = FirebaseStorage.getInstance(storageUrl[index]).getReference();
+        mStorageRef = FirebaseStorage.getInstance("gs://gem360/").getReference();
 
     }
 
@@ -205,25 +193,11 @@ public class SubirNoticia extends AppCompatActivity {
 
         private DatabaseReference databaseReference;
         private View view;
-
-        private String url[] = new String[]{
-                /*Mante*/"https://conalep360-mante.firebaseio.com/",
-                /*Matamoros*/"https://conalep360-matamoros.firebaseio.com/",
-                /*Miguel Aleman*/"https://conalep360-miguelaleman.firebaseio.com/",
-                /*Nuevo Laredo*/"https://conalep360-nuevolaredo.firebaseio.com/",
-                /*Reynosa*/"https://conalep360-reynosa.firebaseio.com/",
-                /*Rio Bravo*/"https://conalep360-riobravo.firebaseio.com/",
-                /*Tampico*/"https://conalep360-tampico.firebaseio.com/",
-                /*Victoria*/"https://conalep360-victoria.firebaseio.com/",
-                /*Cast*/"https://conalep360-cast.firebaseio.com/"
-        };
-
         public SubirFirebase(View view) {
             this.view = view;
 
 
-            databaseReference = FirebaseDatabase.getInstance(url[getSharedPreferences("ADMIN", Context.MODE_PRIVATE)
-                    .getInt("index",0)])
+            databaseReference = FirebaseDatabase.getInstance("https://gem360.firebaseio.com/")
                     .getReference("noticias/");
         }
 

@@ -19,10 +19,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.gem.administradorgem.R;
+import com.gem.administradorgem.ui.Fragment_Alumnos.BottomSheetSettings;
 import com.gem.administradorgem.ui.Fragment_Tutores.Adapter.AdapterTutor;
 
 public class TutoresFragment extends Fragment {
-    private RecyclerView rvTutor;
+
+    public static RecyclerView rvTutor;
     private AdapterTutor adapter;
 
     private FirebaseTutor firebase;
@@ -32,6 +34,10 @@ public class TutoresFragment extends Fragment {
 
     private ImageView btnBuscar;
     private EditText txtMatricula;
+
+    private ImageView imgSettings;
+    private BottomSheetSettings settings;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_tutores, container, false);
@@ -44,11 +50,19 @@ public class TutoresFragment extends Fragment {
         initComponents(view);
         setRvTutor();
 
-        firebase.getTutores(adapter,rvTutor);
+        firebase.getTutores(BottomSheetSettings.nivel,rvTutor);
         btnBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setBtnBuscar();
+            }
+        });
+
+        imgSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                settings = new BottomSheetSettings(firebase);
+                settings.show(getParentFragmentManager(),"settings");
             }
         });
 
@@ -61,10 +75,13 @@ public class TutoresFragment extends Fragment {
         lottie = v.findViewById(R.id.lottieTutores);
         txt = v.findViewById(R.id.txtTutores);
 
-        firebase = new FirebaseTutor(getActivity());
+        firebase = new FirebaseTutor(getActivity(),adapter);
 
         btnBuscar = v.findViewById(R.id.btnBuscar);
         txtMatricula = v.findViewById(R.id.edtxtBuscar);
+
+        imgSettings = v.findViewById(R.id.imgSettings);
+
     }
 
     private void deleteComponents(){
@@ -90,17 +107,17 @@ public class TutoresFragment extends Fragment {
     TextWatcher changeText = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            if (i == 0){
+                adapter.deleteTutor();
+                firebase.getTutores(BottomSheetSettings.nivel,rvTutor);
+                removeChangeText();
+            }
 
         }
 
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            System.out.println(charSequence.length());
-            if ((charSequence.length() == 0) && TextUtils.isEmpty(txtMatricula.getText())){
-                adapter.deleteTutor();
-                firebase.getTutores(adapter,rvTutor);
-                removeChangeText();
-            }
+
         }
 
         @Override

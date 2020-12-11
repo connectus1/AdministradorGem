@@ -26,19 +26,7 @@ public class RemoveDataBase extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        int index = getSharedPreferences("ADMIN", Context.MODE_PRIVATE).getInt("index",0);
-        String url[] = new String[]{
-                /*Mante*/"https://conalep360-mante.firebaseio.com/",
-                /*Matamoros*/"https://conalep360-matamoros.firebaseio.com/",
-                /*Miguel Aleman*/"https://conalep360-miguelaleman.firebaseio.com/",
-                /*Nuevo Laredo*/"https://conalep360-nuevolaredo.firebaseio.com/",
-                /*Reynosa*/"https://conalep360-reynosa.firebaseio.com/",
-                /*Rio Bravo*/"https://conalep360-riobravo.firebaseio.com/",
-                /*Tampico*/"https://conalep360-tampico.firebaseio.com/",
-                /*Victoria*/"https://conalep360-victoria.firebaseio.com/",
-                /*Cast*/"https://conalep360-cast.firebaseio.com/"
-        };
-        reference = FirebaseDatabase.getInstance(url[index]).getReference();
+        reference = FirebaseDatabase.getInstance("https://gem360.firebaseio.com/").getReference();
 
         if (intent != null) {
             keys = intent.getStringArrayListExtra("key");

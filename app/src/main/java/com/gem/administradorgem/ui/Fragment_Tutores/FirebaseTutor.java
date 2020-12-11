@@ -1,6 +1,7 @@
 package com.gem.administradorgem.ui.Fragment_Tutores;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -8,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.gem.administradorgem.ui.Fragment_Alumnos.BottomSheetSettings;
 import com.gem.administradorgem.ui.Fragment_Tutores.Adapter.AdapterTutor;
 import com.gem.administradorgem.ui.Fragment_Tutores.Adapter.Tutor;
 import com.google.firebase.database.ChildEventListener;
@@ -18,15 +20,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-class FirebaseTutor {
+public class FirebaseTutor {
     private DatabaseReference reference;
     private AdapterTutor adapter;
 
     private Activity activity;
 
-    public FirebaseTutor(Activity activity) {
-        reference = FirebaseDatabase.getInstance().getReference().child("Registro_Tutores");
+    public FirebaseTutor(Activity activity,AdapterTutor adapter) {
+        reference = FirebaseDatabase.getInstance("https://registrogem.firebaseio.com/").getReference().child("Registro_Tutores");
         this.activity = activity;
+        this.adapter = adapter;
     }
 
     public void DeleteObject(){
@@ -36,17 +39,19 @@ class FirebaseTutor {
         listener = null;
     }
 
-    public void getTutores(AdapterTutor adapter, RecyclerView rv){
-        this.adapter = adapter;
+    public void getTutores(String nivel, RecyclerView rv){
+        adapter.deleteTutor();
+        rv.removeAllViews();
+
+        reference.child(nivel).addChildEventListener(listener);
         rv.setVisibility(View.VISIBLE);
-        reference.addChildEventListener(listener);
     }
 
     private String matricula;
     public void getTutores(String matricula){
         this.matricula = matricula;
 
-        Query q = reference.orderByChild("matriculas");
+        Query q = reference.child(BottomSheetSettings.nivel).orderByChild("matriculas");
         q.addChildEventListener(aux);
     }
 
@@ -55,6 +60,7 @@ class FirebaseTutor {
         public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
             if (snapshot.getValue()!= null){
+
                 if (isQuery(snapshot.getRef().toString())){
                     reference.child(getKey(snapshot.getRef().toString())).addValueEventListener(value);
 
@@ -124,6 +130,7 @@ class FirebaseTutor {
     private ValueEventListener value = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
+
             Tutor tutor = snapshot.getValue(Tutor.class);
             tutor.setId(eliminarGuion(snapshot.getKey()));
 

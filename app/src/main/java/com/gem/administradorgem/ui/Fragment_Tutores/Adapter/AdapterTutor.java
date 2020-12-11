@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gem.administradorgem.Fragment.Chat.ChatConalep;
+import com.gem.administradorgem.Fragment.Chat.ChatGEM;
 import com.gem.administradorgem.R;
 
 import java.util.ArrayList;
@@ -42,7 +42,7 @@ public class AdapterTutor extends RecyclerView.Adapter<AdapterTutor.TutorViewHol
         holder.lnContenedor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(activity, ChatConalep.class);
+                Intent i = new Intent(activity, ChatGEM.class);
                 i.putExtra("matricula",tutorList.get(position).getId());
                 activity.startActivity(i);
             }

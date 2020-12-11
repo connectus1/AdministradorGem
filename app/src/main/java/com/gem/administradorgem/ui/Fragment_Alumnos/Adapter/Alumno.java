@@ -6,19 +6,27 @@ public class Alumno implements Serializable {
     private String id;
     private String nombre;
     private String correo;
+
     private String plantel;
     private String matricula;
+
+    private String nivel;
+    private String grado;
+    private String grupo;
 
     public Alumno() {
 
     }
 
-    public Alumno(String id, String nombre, String correo, String plantel,String matricula) {
+    public Alumno(String id, String nombre, String correo, String plantel, String matricula, String nivel, String grado, String grupo) {
         this.id = id;
         this.nombre = nombre;
         this.correo = correo;
         this.plantel = plantel;
         this.matricula = matricula;
+        this.nivel = nivel;
+        this.grado = grado;
+        this.grupo = grupo;
     }
 
     public Alumno(Alumno alumno){
@@ -67,5 +75,29 @@ public class Alumno implements Serializable {
 
     public void setMatricula(String matricula) {
         this.matricula = matricula;
+    }
+
+    public String getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(String nivel) {
+        this.nivel = nivel;
+    }
+
+    public String getGrado() {
+        return grado;
+    }
+
+    public void setGrado(String grado) {
+        this.grado = grado;
+    }
+
+    public String getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(String grupo) {
+        this.grupo = grupo;
     }
 }

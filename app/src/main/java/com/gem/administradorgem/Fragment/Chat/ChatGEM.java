@@ -1,7 +1,6 @@
 package com.gem.administradorgem.Fragment.Chat;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
@@ -35,7 +34,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ChatConalep extends AppCompatActivity {
+public class ChatGEM extends AppCompatActivity {
 
     /*Componentes del chat*/
     private EditText edtxtMensaje;
@@ -44,7 +43,6 @@ public class ChatConalep extends AppCompatActivity {
 
     private ChatAdapter adapter;
     private DatabaseReference databaseReference;
-//    private String[] plantel;
 
 
     private SQLiteDatabase bd;
@@ -174,7 +172,7 @@ public class ChatConalep extends AppCompatActivity {
                             }
                         }
                     } else {
-                        Internet.dialogoNoIternet(ChatConalep.this);
+                        Internet.dialogoNoIternet(ChatGEM.this);
                     }
                 }
             }
@@ -244,20 +242,8 @@ public class ChatConalep extends AppCompatActivity {
         keyEliminar = new ArrayList<>();
     }
 
-    private String url[] = new String[]{
-            /*Mante*/"https://conalep360-mante.firebaseio.com/",
-            /*Matamoros*/"https://conalep360-matamoros.firebaseio.com/",
-            /*Miguel Aleman*/"https://conalep360-miguelaleman.firebaseio.com/",
-            /*Nuevo Laredo*/"https://conalep360-nuevolaredo.firebaseio.com/",
-            /*Reynosa*/"https://conalep360-reynosa.firebaseio.com/",
-            /*Rio Bravo*/"https://conalep360-riobravo.firebaseio.com/",
-            /*Tampico*/"https://conalep360-tampico.firebaseio.com/",
-            /*Victoria*/"https://conalep360-victoria.firebaseio.com/",
-            /*Cast*/"https://conalep360-cast.firebaseio.com/"
-    };
 
     private void initFirebase(CharSequence matricula) {
-
         databaseReference = FirebaseDatabase.getInstance("https://gem360.firebaseio.com/")
                 .getReference("Chat/-" +matricula);
     }
@@ -295,7 +281,7 @@ public class ChatConalep extends AppCompatActivity {
 
 
         /*Ejecuta el servicio para eliminar los mensajes recibidos por parte de la institucion*/
-        Intent i = new Intent(ChatConalep.this, RemoveDataBase.class);
+        Intent i = new Intent(ChatGEM.this, RemoveDataBase.class);
         i.putStringArrayListExtra("key", keyEliminar);
         i.putExtra("matricula",matricula);
 

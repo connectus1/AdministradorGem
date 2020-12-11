@@ -28,18 +28,6 @@ public class FragmentUsuarios extends Fragment {
     static LottieAnimationView lottie;
     static TextView txtChat;
 
-    private SharedPreferences preferences;
-    private String url[] = new String[]{
-            /*Mante*/"https://conalep360-mante.firebaseio.com/",
-            /*Matamoros*/"https://conalep360-matamoros.firebaseio.com/",
-            /*Miguel Aleman*/"https://conalep360-miguelaleman.firebaseio.com/",
-            /*Nuevo Laredo*/"https://conalep360-nuevolaredo.firebaseio.com/",
-            /*Reynosa*/"https://conalep360-reynosa.firebaseio.com/",
-            /*Rio Bravo*/"https://conalep360-riobravo.firebaseio.com/",
-            /*Tampico*/"https://conalep360-tampico.firebaseio.com/",
-            /*Victoria*/"https://conalep360-victoria.firebaseio.com/",
-            /*Cast*/"https://conalep360-cast.firebaseio.com/"
-    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -61,8 +49,8 @@ public class FragmentUsuarios extends Fragment {
         lottie = view.findViewById(R.id.lottieChat);
         txtChat = view.findViewById(R.id.txtChat);
 
-        preferences = getActivity().getSharedPreferences("ADMIN", Context.MODE_PRIVATE);
-        firebase = new FirebaseMensaje(getActivity(),url[preferences.getInt("index",7)]);
+//        preferences = getActivity().getSharedPreferences("ADMIN", Context.MODE_PRIVATE);
+        firebase = new FirebaseMensaje(getActivity(),"https://gem360.firebaseio.com/");
 
     }
 

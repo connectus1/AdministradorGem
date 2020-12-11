@@ -37,9 +37,10 @@
     </LinearLayout>
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/pinChat"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
         android:layout_marginEnd="5dp"
-        android:layout_gravity="center_vertical"
+        android:textAlignment="textEnd"
+        android:layout_gravity="center_vertical|end"
         android:src="@color/colorPrimaryDark"/>
 </LinearLayout>

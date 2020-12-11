@@ -7,7 +7,6 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
@@ -85,7 +84,7 @@ public class Login extends AppCompatActivity {
         button = (Button) findViewById(R.id.btnIniciar);
         spn = (Spinner) findViewById(R.id.spnEscuela);
 
-        preferences = getSharedPreferences("ADMIN",Context.MODE_PRIVATE);
+        preferences = getSharedPreferences("ADMINGEM360",Context.MODE_PRIVATE);
     }
 
     //INTENTO DE PASAR A LA ACTIVITY MAIN//

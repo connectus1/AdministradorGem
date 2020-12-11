@@ -22,8 +22,9 @@ class FirebaseAlumnos {
     private AdapterAlumnos adapter;
     private Context context;
 
-    public FirebaseAlumnos(Context context) {
-        reference = FirebaseDatabase.getInstance().getReference().child("Registro_Alumnos");
+    public FirebaseAlumnos(Context context,AdapterAlumnos adapter) {
+        reference = FirebaseDatabase.getInstance("https://registrogem.firebaseio.com/").getReference();
+        this.adapter = adapter;
         this.context = context;
     }
 
@@ -33,16 +34,18 @@ class FirebaseAlumnos {
         reference = null;
     }
 
-    public void getAlumnos(AdapterAlumnos adapter, RecyclerView rv){
-        this.adapter = adapter;
-        reference.addChildEventListener(listener);
-
-        rv.setVisibility(View.VISIBLE);
+    public void getAlumnos(String matricula){
+        Query q = reference.child("Registro_"+ BottomSheetSettings.nivel).orderByChild("matricula").equalTo(matricula);
+        q.addChildEventListener(listener);
     }
 
-    public void getAlumnos(String matricula){
-        Query q = reference.orderByChild("matricula").equalTo(matricula);
-        q.addChildEventListener(listener);
+    public void getAlumnos(String nivel,RecyclerView rv){
+        adapter.deleteAlumno();
+        rv.removeAllViews();
+
+        reference.child("Registro_" + nivel).addChildEventListener(listener);
+        rv.setVisibility(View.VISIBLE);
+
     }
 
     private ChildEventListener listener = new ChildEventListener() {
@@ -51,14 +54,32 @@ class FirebaseAlumnos {
             if (snapshot.getValue() !=null){
 
                 Alumno alumno = snapshot.getValue(Alumno.class);
-                alumno.setId(snapshot.getKey());
-                alumno.setId(eliminarGuion(alumno.getId()));
+                if( (alumno.getGrupo().equals(BottomSheetSettings.grupo) ) &&
+                        (alumno.getGrado().equals(BottomSheetSettings.grado)) ){
 
-                adapter.addAlumno(alumno);
+                    alumno.setId(snapshot.getKey());
+                    alumno.setId(eliminarGuion(alumno.getId()));
 
-                AlumnosFragment.lottie.setVisibility(View.INVISIBLE);
-                AlumnosFragment.txt.setVisibility(View.INVISIBLE);
 
+                    adapter.addAlumno(alumno);
+                }
+
+                if (AlumnosFragment.lottie.getVisibility() == View.VISIBLE) {
+                    AlumnosFragment.lottie.setVisibility(View.INVISIBLE);
+                    AlumnosFragment.txt.setVisibility(View.INVISIBLE);
+                }
+
+                if (adapter.getItemCount() == 0){
+                    AlumnosFragment.lottie.setVisibility(View.VISIBLE);
+                    AlumnosFragment.txt.setVisibility(View.VISIBLE);
+                }
+
+
+
+
+            }else {
+                AlumnosFragment.lottie.setVisibility(View.VISIBLE);
+                AlumnosFragment.txt.setVisibility(View.VISIBLE);
             }
 
         }
