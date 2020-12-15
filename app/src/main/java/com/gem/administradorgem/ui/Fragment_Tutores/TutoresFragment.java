@@ -1,9 +1,7 @@
 package com.gem.administradorgem.ui.Fragment_Tutores;
 
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.gem.administradorgem.R;
-import com.gem.administradorgem.ui.Fragment_Alumnos.BottomSheetSettings;
 import com.gem.administradorgem.ui.Fragment_Tutores.Adapter.AdapterTutor;
 
 public class TutoresFragment extends Fragment {
@@ -36,7 +33,7 @@ public class TutoresFragment extends Fragment {
     private EditText txtMatricula;
 
     private ImageView imgSettings;
-    private BottomSheetSettings settings;
+    private BottomSheetSettingsTutor settings;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -50,7 +47,7 @@ public class TutoresFragment extends Fragment {
         initComponents(view);
         setRvTutor();
 
-        firebase.getTutores(BottomSheetSettings.nivel,rvTutor);
+        firebase.getTutores(rvTutor);
         btnBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,8 +58,8 @@ public class TutoresFragment extends Fragment {
         imgSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                settings = new BottomSheetSettings(firebase);
-                settings.show(getParentFragmentManager(),"settings");
+                settings = new BottomSheetSettingsTutor(firebase);
+                settings.show(getParentFragmentManager(), "settings");
             }
         });
 
@@ -104,25 +101,11 @@ public class TutoresFragment extends Fragment {
         rvTutor.setAdapter(adapter);
     }
 
-    TextWatcher changeText = new TextWatcher() {
+    private View.OnClickListener click = new View.OnClickListener() {
         @Override
-        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            if (i == 0){
-                adapter.deleteTutor();
-                firebase.getTutores(BottomSheetSettings.nivel,rvTutor);
+        public void onClick(View view) {
+            if ((txtMatricula.getText().toString().length() >= 7))
                 removeChangeText();
-            }
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-        }
-
-        @Override
-        public void afterTextChanged(Editable editable) {
-
         }
     };
 
@@ -132,12 +115,15 @@ public class TutoresFragment extends Fragment {
             firebase.getTutores(txtMatricula.getText().toString());
         }
 
-        txtMatricula.addTextChangedListener(changeText);
-
+        txtMatricula.setOnClickListener(click);
     }
 
-    private void removeChangeText(){
-        txtMatricula.removeTextChangedListener(changeText);
+    private void removeChangeText() {
+        txtMatricula.setOnClickListener(null);
+        txtMatricula.setText("");
+
+        adapter.deleteTutor();
+        firebase.getTutores(rvTutor);
     }
 
     @Override

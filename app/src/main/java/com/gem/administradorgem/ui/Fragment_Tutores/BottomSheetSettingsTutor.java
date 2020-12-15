@@ -1,4 +1,4 @@
-package com.gem.administradorgem.ui.Fragment_Alumnos;
+package com.gem.administradorgem.ui.Fragment_Tutores;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -17,8 +17,7 @@ import androidx.annotation.Nullable;
 import com.gem.administradorgem.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-
-public class BottomSheetSettings extends BottomSheetDialogFragment {
+public class BottomSheetSettingsTutor extends BottomSheetDialogFragment {
 
     private Spinner spnGrupo;
     private Spinner spnGrado;
@@ -32,11 +31,10 @@ public class BottomSheetSettings extends BottomSheetDialogFragment {
     public static String grado = "1";
     public static String nivel = "Kínder";
 
+    private FirebaseTutor tutor;
 
-    private FirebaseAlumnos alumnos;
-
-    public BottomSheetSettings(FirebaseAlumnos alumnos) {
-        this.alumnos = alumnos;
+    public BottomSheetSettingsTutor(FirebaseTutor tutor) {
+        this.tutor = tutor;
     }
 
     @Nullable
@@ -82,7 +80,6 @@ public class BottomSheetSettings extends BottomSheetDialogFragment {
 
 
         fillData();
-
     }
 
     @Override
@@ -92,8 +89,7 @@ public class BottomSheetSettings extends BottomSheetDialogFragment {
         grado = spnGrado.getSelectedItem().toString();
         nivel = check[index].getText().toString();
 
-        alumnos.getAlumnos(nivel, AlumnosFragment.rv_alumnos);
-
+        tutor.getTutores(TutoresFragment.rvTutor);
     }
 
     private void initComponents(View v) {
@@ -153,6 +149,4 @@ public class BottomSheetSettings extends BottomSheetDialogFragment {
 
 
     }
-
-
 }

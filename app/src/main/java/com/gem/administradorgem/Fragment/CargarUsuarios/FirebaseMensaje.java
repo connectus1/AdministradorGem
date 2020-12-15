@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.gem.administradorgem.Fragment.CargarUsuarios.Adapter.AdapterMensajes;
 import com.gem.administradorgem.Fragment.CargarUsuarios.Adapter.Mensaje;
-import com.gem.administradorgem.Fragment.Chat.itemChat;
+import com.gem.administradorgem.Fragment.Chat.Adapter.itemChat;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -45,19 +45,20 @@ class FirebaseMensaje {
         public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
             if (snapshot.getValue()!= null){
                 Mensaje mensaje = new Mensaje();
-                mensaje.setId(eliminarGuion(snapshot.getKey()));
+                mensaje.setId(snapshot.getKey());
 
-                for (DataSnapshot data: snapshot.getChildren()){
+                for (DataSnapshot data : snapshot.getChildren()) {
                     itemChat chat = data.getValue(itemChat.class);
 
                     mensaje.setMensaje(chat.getMensaje());
                     mensaje.setNombre(chat.getNombre());
 
-
                     break;
                 }
 
-                adapter.addMensaje(mensaje);
+                if (!mensaje.getNombre().equals("GEM"))
+                    adapter.addMensaje(mensaje);
+
                 FragmentUsuarios.lottie.setVisibility(View.INVISIBLE);
                 FragmentUsuarios.lottie.pauseAnimation();
 
@@ -76,7 +77,7 @@ class FirebaseMensaje {
             if (snapshot.getValue()!= null){
 
                 Mensaje mensaje = new Mensaje();
-                mensaje.setId(eliminarGuion(snapshot.getKey()));
+                mensaje.setId(snapshot.getKey());
 
                 for (DataSnapshot data: snapshot.getChildren()){
                     itemChat chat = data.getValue(itemChat.class);
@@ -105,22 +106,5 @@ class FirebaseMensaje {
             Toast.makeText(activity, "Ha ocurrido un error", Toast.LENGTH_SHORT).show();
         }
     };
-
-    private String eliminarGuion(String id){
-
-        StringBuilder build = new StringBuilder();
-        for (int i = 1;i<id.length();i++){
-            build.append(id.charAt(i));
-        }
-
-        id = build.toString();
-
-        build.delete(0,build.length()-1);
-        build = null;
-
-        return id;
-    }
-
-
 
 }

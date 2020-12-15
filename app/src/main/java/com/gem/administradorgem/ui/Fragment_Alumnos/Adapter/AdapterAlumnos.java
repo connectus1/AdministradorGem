@@ -43,13 +43,10 @@ public class AdapterAlumnos extends RecyclerView.Adapter<AdapterAlumnos.AlumnosV
         holder.txtName.setText(alumnoList.get(position).getNombre());
         holder.txtMatricula.setText(alumnoList.get(position).getMatricula());
 
-        holder.lnContentenedor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(activity, ChatGEM.class);
-                i.putExtra("matricula",alumnoList.get(position).getId());
-                activity.startActivity(i);
-            }
+        holder.lnContentenedor.setOnClickListener(view -> {
+            Intent i = new Intent(activity, ChatGEM.class);
+            i.putExtra("matricula", alumnoList.get(position).getId());
+            activity.startActivity(i);
         });
     }
 

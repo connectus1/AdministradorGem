@@ -3,7 +3,6 @@ package com.gem.administradorgem.Fragment.Noticias.CargarNoticias;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,14 +54,9 @@ public class NoticiaAdapter extends RecyclerView.Adapter<NoticiaAdapter.NoticiaV
     @Override
     public void onBindViewHolder(@NonNull NoticiaViewHolder holder, final int position) {
         holder.setInfo(noticias.get(position), activity.getBaseContext());
-        holder.lnContenedor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CrearDialog(noticias.get(position).getDescripcion(),
-                        noticias.get(position).getUrlAlmacenamiento(),noticias.get(position).getTitulo())
-                        .show();
-            }
-        });
+        holder.lnContenedor.setOnClickListener(view -> CrearDialog(noticias.get(position).getDescripcion(),
+                noticias.get(position).getUrlAlmacenamiento(), noticias.get(position).getTitulo())
+                .show());
 
         holder.txtHora.setText(noticias.get(position).getFecha());
 
@@ -109,29 +103,21 @@ public class NoticiaAdapter extends RecyclerView.Adapter<NoticiaAdapter.NoticiaV
                 "<html lang=\"es\">" +
                 "<head>" + "<meta charset=\"utf-8\">" + "</head>" +
                 "<body>" +
-                "<h3>" + titulo.toString() +"</h3>" +
+                "<h3>" + titulo + "</h3>" +
                 "<p style=\"text-align:justify;\">" + agregarSaltos(descripcion) + "<br><br><br><br></p>" +
                 "</body>" +
                 "</html>";
-        WebView mWebView = (WebView) view.findViewById(R.id.webNoticia);
+        WebView mWebView = view.findViewById(R.id.webNoticia);
         mWebView.loadData(web, "text/html", "utf-8");
 
-        builder.setView(view)
-                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-
-                    }
-                });
-
+        builder.setView(view).setPositiveButton("Ok", (dialog, id) -> {
+        });
 
         return builder.create();
     }
 
     private String agregarSaltos(String descripcion){
-        String nuevo="";
-        nuevo = descripcion.replace("\n","<br>");
-        return nuevo;
+        return descripcion.replace("\n", "<br>");
     }
 
 

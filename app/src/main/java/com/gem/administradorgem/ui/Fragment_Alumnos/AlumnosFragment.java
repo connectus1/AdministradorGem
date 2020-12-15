@@ -48,20 +48,12 @@ public class AlumnosFragment extends Fragment {
         initComponents(view);
         setRv_alumnos();
 
-        firebase.getAlumnos(BottomSheetSettings.nivel,rv_alumnos);
-        btnBuscar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setBtnBuscar();
-            }
-        });
+        firebase.getAlumnos(BottomSheetSettings.nivel, rv_alumnos);
+        btnBuscar.setOnClickListener(view1 -> setBtnBuscar());
 
-        imgSettings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                settings = new BottomSheetSettings(firebase);
-                settings.show(getParentFragmentManager(),"settings");
-            }
+        imgSettings.setOnClickListener(view12 -> {
+            settings = new BottomSheetSettings(firebase);
+            settings.show(getParentFragmentManager(), "settings");
         });
 
     }

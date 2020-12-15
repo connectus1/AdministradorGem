@@ -39,12 +39,17 @@ class FirebaseAlumnos {
         q.addChildEventListener(listener);
     }
 
-    public void getAlumnos(String nivel,RecyclerView rv){
+    public void getAlumnos(String nivel, RecyclerView rv) {
         adapter.deleteAlumno();
-        rv.removeAllViews();
 
         reference.child("Registro_" + nivel).addChildEventListener(listener);
-        rv.setVisibility(View.VISIBLE);
+
+        try {
+            rv.setVisibility(View.VISIBLE);
+        } catch (NullPointerException e) {
+            AlumnosFragment.rv_alumnos.setVisibility(View.VISIBLE);
+        }
+
 
     }
 

@@ -20,6 +20,7 @@ import java.util.List;
 public class AdapterMensajes extends RecyclerView.Adapter<AdapterMensajes.MensajesViewHolder>{
     private List<Mensaje> mensajeList;
     private Activity activity;
+    private final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
     public AdapterMensajes(Activity activity) {
         this.activity = activity;
@@ -38,11 +39,12 @@ public class AdapterMensajes extends RecyclerView.Adapter<AdapterMensajes.Mensaj
         holder.txtMensaje.setText(mensajeList.get(position).getMensaje());
         holder.txtNombre.setText(mensajeList.get(position).getNombre());
 
+        holder.lnContenedor.setLayoutParams(params);
         holder.lnContenedor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(activity, ChatGEM.class);
-                i.putExtra("matricula",mensajeList.get(position).getId());
+                i.putExtra("matricula", mensajeList.get(position).getId());
 
                 activity.startActivity(i);
             }

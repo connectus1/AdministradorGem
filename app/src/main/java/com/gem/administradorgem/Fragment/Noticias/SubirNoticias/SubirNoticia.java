@@ -2,8 +2,6 @@ package com.gem.administradorgem.Fragment.Noticias.SubirNoticias;
 
 import android.Manifest;
 import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
@@ -27,10 +25,7 @@ import androidx.core.content.ContextCompat;
 import com.bumptech.glide.Glide;
 import com.gem.administradorgem.Fragment.Noticias.ItemNoticia;
 import com.gem.administradorgem.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
@@ -43,25 +38,21 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-//import com.conalep.admin.MainActivity;
-
 
 public class SubirNoticia extends AppCompatActivity {
+
+    private static boolean cambioImagen;
 
     private ImageButton btnImgNoticia;
     private ImageView imgNoticia;
 
     public static Uri uriFile;
 
-    private static boolean cambioImagen;
-
     private TextInputLayout txtTitulo;
     private EditText txtNoticia;
     private AlertDialog alert;
 
-    private DatabaseReference reference;
     private StorageReference mStorageRef;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,30 +64,22 @@ public class SubirNoticia extends AppCompatActivity {
         initComponents();
         alert = dialogoPrimeraVez();
 
-        imgNoticia.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(SubirNoticia.this);
-                builder.setTitle("Noticia");
-                builder.setMessage("Esta a punto de eliminar la imagen seleccionada ¿Esta seguro?");
-                builder.setPositiveButton("Confirmar",new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        imgNoticia.setImageResource(R.drawable.ic_launcher_background);
-                        btnImgNoticia.setEnabled(true);
-                        btnImgNoticia.setVisibility(View.VISIBLE);
-                        cambioImagen = false;
-                    }
-                });
-                AlertDialog alert = builder.create();
-                alert.show();
-                return false;
-            }
+        imgNoticia.setOnLongClickListener(view -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(SubirNoticia.this);
+            builder.setTitle("Noticia");
+            builder.setMessage("Esta a punto de eliminar la imagen seleccionada ¿Esta seguro?");
+            builder.setPositiveButton("Confirmar", (dialogInterface, i) -> {
+                imgNoticia.setImageResource(R.drawable.degradado);
+                btnImgNoticia.setEnabled(true);
+                btnImgNoticia.setVisibility(View.VISIBLE);
+                cambioImagen = false;
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
+            return false;
         });
 
     }
-
-
 
     public void setBtnImgNoticia(View v){
         if (ContextCompat.checkSelfPermission(SubirNoticia.this, Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -106,6 +89,7 @@ public class SubirNoticia extends AppCompatActivity {
             abrirGaleria();
         }
     }
+
     public void setBtnEnviar(View v){
         alert.show();
         SubirFirebase subirnotica = new SubirFirebase(v);
@@ -123,12 +107,10 @@ public class SubirNoticia extends AppCompatActivity {
         super.onDestroy();
     }
 
-    /**
-     * Inicializa los componentes
-     */
+    //El metodo se usa para incializar los compoenentes
     private void initComponents() {
-        btnImgNoticia = (ImageButton) findViewById(R.id.btnImagenNoticia);
-        imgNoticia = (ImageView) findViewById(R.id.imgNoticia);
+        btnImgNoticia = findViewById(R.id.btnImagenNoticia);
+        imgNoticia = findViewById(R.id.imgNoticia);
 
         txtTitulo = findViewById(R.id.txtTituloNoticia);
         txtNoticia = findViewById(R.id.txtDescripcionNoticia);
@@ -137,7 +119,7 @@ public class SubirNoticia extends AppCompatActivity {
 
     }
 
-    /**Elimina la referencia de los componentes**/
+    //Elimina todas la resferencias del objetos utilizados
     private void deleteComponents(){
         btnImgNoticia.setImageDrawable(null);
         btnImgNoticia = null;
@@ -149,7 +131,7 @@ public class SubirNoticia extends AppCompatActivity {
         System.gc();
     }
 
-    /**Funciones para abrir galeria y cargar imagen**/
+    //Metodo utilizado para abrir la galeria
     public void abrirGaleria(){
         Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         gallery.setType("image/");
@@ -190,18 +172,13 @@ public class SubirNoticia extends AppCompatActivity {
 
     class SubirFirebase extends Thread {
 
-
         private DatabaseReference databaseReference;
         private View view;
         public SubirFirebase(View view) {
             this.view = view;
-
-
             databaseReference = FirebaseDatabase.getInstance("https://gem360.firebaseio.com/")
-                    .getReference("noticias/");
+                    .getReference("noticias");
         }
-
-
 
         @Override
         public void run() {
@@ -243,23 +220,15 @@ public class SubirNoticia extends AppCompatActivity {
         }
 
         private void subirImagen(final ItemNoticia itemNoticia) {
-            mStorageRef.child("ImagenesEvento/" + "Mante/" + itemNoticia.getTitulo()).putFile(uriFile).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            mStorageRef.child("ImagenesEvento/" + itemNoticia.getTitulo()).putFile(uriFile).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    taskSnapshot.getStorage().getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Uri> task) {
-                            itemNoticia.setUrl(task.getResult().toString());
-                            databaseReference.push().setValue(itemNoticia);
-                            alert.dismiss();
-                            finishActivity();
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Snackbar.make(view,"Error al cargar la noticia", Snackbar.LENGTH_LONG).show();
-                        }
-                    });
+                    taskSnapshot.getStorage().getDownloadUrl().addOnCompleteListener(task -> {
+                        itemNoticia.setUrl(task.getResult().toString());
+                        databaseReference.push().setValue(itemNoticia);
+                        alert.dismiss();
+                        finishActivity();
+                    }).addOnFailureListener(e -> Snackbar.make(view, "Error al cargar la noticia", Snackbar.LENGTH_LONG).show());
                 }
             });
 
@@ -280,7 +249,7 @@ public class SubirNoticia extends AppCompatActivity {
         int minutos = calendario.get(Calendar.MINUTE);
         int segundos = calendario.get(Calendar.SECOND);
 
-        return new String(hora + ":" + minutos + ":" + segundos);
+        return hora + ":" + minutos + ":" + segundos;
     }
 
     private void finishActivity(){

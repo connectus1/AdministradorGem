@@ -1,4 +1,4 @@
-package com.gem.administradorgem.Fragment.Chat;
+package com.gem.administradorgem.Fragment.Chat.Adapter;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -20,7 +20,6 @@ import com.gem.administradorgem.R;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder> {
 
@@ -62,7 +61,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
         holder.cardMensaje.setBackgroundTintList(ColorStateList.valueOf(context.getColor(R.color.verde)));
 
         if (listMensajes.get(position) != null) {
-            if (listMensajes.get(position).isId()) {
+            if (!listMensajes.get(position).getNombre().equals("GEM")) {
                 holder.imgChatAlumno.setVisibility(View.VISIBLE);
             } else {
                 holder.imgChatEscuela.setVisibility(View.VISIBLE);
@@ -90,11 +89,11 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
 
         public ChatViewHolder(View itemView) {
             super(itemView);
-            txtMensaje = (TextView) itemView.findViewById(R.id.txtMensaje);
-            imgChatAlumno = (LottieAnimationView) itemView.findViewById(R.id.imgChatAlumno);
-            imgChatEscuela = (ImageView) itemView.findViewById(R.id.imgChatEscuela);
-            contendor = (LinearLayout) itemView.findViewById(R.id.lnContenedor);
-            cardMensaje = (CardView) itemView.findViewById(R.id.cardMensaje);
+            txtMensaje = itemView.findViewById(R.id.txtMensaje);
+            imgChatAlumno = itemView.findViewById(R.id.imgChatAlumno);
+            imgChatEscuela = itemView.findViewById(R.id.imgChatEscuela);
+            contendor = itemView.findViewById(R.id.lnContenedor);
+            cardMensaje = itemView.findViewById(R.id.cardMensaje);
 
         }
     }

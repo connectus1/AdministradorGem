@@ -6,9 +6,6 @@ public class ItemNoticia {
     private String urlAlmacenamiento;
     private String fecha;
 
-    //private String id;
-
-
     public String getUrlAlmacenamiento() {
         return urlAlmacenamiento;
     }
@@ -31,10 +28,6 @@ public class ItemNoticia {
 
     public String getDescripcion() {
         return descripcion;
-    }
-
-    public void setUrlAlmacenamiento(String urlAlmacenamiento) {
-        this.urlAlmacenamiento = urlAlmacenamiento;
     }
 
     public String getFecha() {

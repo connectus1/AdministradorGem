@@ -1,7 +1,6 @@
-package com.gem.administradorgem.Fragment.Chat;
+package com.gem.administradorgem.Fragment.Chat.FirebaseChat;
 
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 
@@ -35,7 +34,7 @@ public class RemoveDataBase extends Service {
 
         if (keys != null) {
             for (String key : keys) {
-                reference.child("Chat/-"+matricula +"/"+key).removeValue();
+                reference.child("Chat/" + matricula + "/" + key).removeValue();
             }
         }
 

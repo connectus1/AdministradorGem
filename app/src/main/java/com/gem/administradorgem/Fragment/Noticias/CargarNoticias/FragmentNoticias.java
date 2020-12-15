@@ -1,6 +1,5 @@
 package com.gem.administradorgem.Fragment.Noticias.CargarNoticias;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -32,7 +31,7 @@ public class FragmentNoticias extends Fragment {
     private LinearLayout lnNoticias;
     private LottieAnimationView lottie;
 
-    ChildEventListener listener = new ChildEventListener() {
+    private ChildEventListener listener = new ChildEventListener() {
         @Override
         public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
@@ -67,11 +66,9 @@ public class FragmentNoticias extends Fragment {
     DatabaseReference reference;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_noticias, container, false);
     }
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -81,27 +78,29 @@ public class FragmentNoticias extends Fragment {
         initFirebase();
         setRvNoticias();
 
-        lnNoticias.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getContext(), SubirNoticia.class);
-                noticiaAdapter.delete();
+        lnNoticias.setOnClickListener(view1 -> {
+            Intent i = new Intent(getContext(), SubirNoticia.class);
+            noticiaAdapter.delete();
 
-                startActivity(i);
-            }
+            startActivity(i);
         });
 
     }
 
+    //**************************************
+    //Inicializa firebase
+    //***********************************
     private void initFirebase() {
-
         reference = FirebaseDatabase.getInstance("https://gem360.firebaseio.com/")
                 .getReference("noticias");
         reference.addChildEventListener(listener);
     }
 
-    private void initComponentes(View view){
-        /*Componentes para las noticias*/
+    //*******************************************
+    //Inicializa los componentes
+    //***********************************
+    private void initComponentes(View view) {
+
         rvNoticias = view.findViewById(R.id.rvNoticias);
         noticiaAdapter = new NoticiaAdapter(getActivity());
 
@@ -124,7 +123,7 @@ public class FragmentNoticias extends Fragment {
     private void desactivarLottie(){
         lottie.setEnabled(false);
         lottie.setVisibility(View.INVISIBLE);
-        lottie.loop(false);
+        lottie.pauseAnimation();
     }
 
     private void addNoticia(ItemNoticia noticia){
@@ -136,8 +135,6 @@ public class FragmentNoticias extends Fragment {
         reference.removeEventListener(listener);
         reference = null;
 
-
-//        rvNoticias.removeAllViews();
         noticiaAdapter.delete();
 
         super.onPause();

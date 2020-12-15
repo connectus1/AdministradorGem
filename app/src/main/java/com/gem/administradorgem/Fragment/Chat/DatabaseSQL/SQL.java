@@ -1,4 +1,4 @@
-package com.gem.administradorgem.Fragment.Chat;
+package com.gem.administradorgem.Fragment.Chat.DatabaseSQL;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -6,9 +6,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-class BaseDeDatosChat extends SQLiteOpenHelper {
+public class SQL extends SQLiteOpenHelper {
 
-    public BaseDeDatosChat(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
+    public SQL(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
 

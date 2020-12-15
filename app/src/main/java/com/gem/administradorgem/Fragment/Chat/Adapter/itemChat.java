@@ -1,19 +1,11 @@
-package com.gem.administradorgem.Fragment.Chat;
+package com.gem.administradorgem.Fragment.Chat.Adapter;
 
 public class itemChat {
     private String Mensaje;
     private String Fecha;
-    private boolean id;
     private String Nombre;
 
     public itemChat() {
-    }
-
-    public itemChat(String mensaje, String fecha, boolean id,String nombre) {
-        Mensaje = mensaje;
-        Fecha = fecha;
-        this.id = id;
-        Nombre = nombre;
     }
 
     public String getFecha() {
@@ -30,14 +22,6 @@ public class itemChat {
 
     public void setMensaje(String mensaje) {
         Mensaje = mensaje;
-    }
-
-    public boolean isId() {
-        return id;
-    }
-
-    public void setId(boolean id) {
-        this.id = id;
     }
 
     public String getNombre() {

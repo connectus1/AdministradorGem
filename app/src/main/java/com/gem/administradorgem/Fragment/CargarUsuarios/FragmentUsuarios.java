@@ -1,7 +1,5 @@
 package com.gem.administradorgem.Fragment.CargarUsuarios;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,7 +47,6 @@ public class FragmentUsuarios extends Fragment {
         lottie = view.findViewById(R.id.lottieChat);
         txtChat = view.findViewById(R.id.txtChat);
 
-//        preferences = getActivity().getSharedPreferences("ADMIN", Context.MODE_PRIVATE);
         firebase = new FirebaseMensaje(getActivity(),"https://gem360.firebaseio.com/");
 
     }
