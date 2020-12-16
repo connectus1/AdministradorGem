@@ -53,6 +53,7 @@ public class AlumnosFragment extends Fragment {
 
         imgSettings.setOnClickListener(view12 -> {
             settings = new BottomSheetSettings(firebase);
+
             settings.show(getParentFragmentManager(), "settings");
         });
 

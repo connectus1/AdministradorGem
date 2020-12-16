@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,12 +26,16 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class FragmentNoticias extends Fragment {
 
     private RecyclerView rvNoticias;
     private NoticiaAdapter noticiaAdapter;
-    private LinearLayout lnNoticias;
+
     private LottieAnimationView lottie;
+    private TextView txtTexto;
+    private CircleImageView imgTexto;
 
     private ChildEventListener listener = new ChildEventListener() {
         @Override
@@ -65,6 +71,16 @@ public class FragmentNoticias extends Fragment {
     };
     DatabaseReference reference;
 
+    private View.OnClickListener click = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent i = new Intent(getContext(), SubirNoticia.class);
+            noticiaAdapter.delete();
+
+            startActivity(i);
+        }
+    };
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_noticias, container, false);
@@ -78,12 +94,8 @@ public class FragmentNoticias extends Fragment {
         initFirebase();
         setRvNoticias();
 
-        lnNoticias.setOnClickListener(view1 -> {
-            Intent i = new Intent(getContext(), SubirNoticia.class);
-            noticiaAdapter.delete();
-
-            startActivity(i);
-        });
+        txtTexto.setOnClickListener(click);
+        imgTexto.setOnClickListener(click);
 
     }
 
@@ -104,9 +116,12 @@ public class FragmentNoticias extends Fragment {
         rvNoticias = view.findViewById(R.id.rvNoticias);
         noticiaAdapter = new NoticiaAdapter(getActivity());
 
-        lnNoticias = view.findViewById(R.id.lnNoticias);
+//        lnNoticias = view.findViewById(R.id.lnNoticias);
 
         lottie = view.findViewById(R.id.lottieNoticia);
+
+        imgTexto = view.findViewById(R.id.imageView);
+        txtTexto = view.findViewById(R.id.textView2);
     }
 
     private void setRvNoticias(){

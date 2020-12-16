@@ -11,9 +11,11 @@
         android:layout_height="50dp"
 
         android:layout_gravity="center_vertical"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
 
-        android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
+
 
         android:src="@drawable/ic_launcher_background" />
 
@@ -21,6 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+        android:layout_gravity="center_vertical"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="5dp"
         android:orientation="vertical">
@@ -34,20 +37,38 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
 
+            android:textStyle="bold"
             android:text="Titulo de la noticia que se subio"
             android:textSize="15sp" />
 
-        <TextView
-            android:id="@+id/txtHoraNoticia"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-            android:layout_gravity="end"
+            <TextView
+                android:id="@+id/txtNivelNoticia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-            android:layout_marginTop="10dp"
-            android:text="hora de la noticia"
-            android:textSize="13sp"
-            android:textStyle="italic" />
+                android:layout_marginStart="5dp"
+                android:text="Nivel Estudiantil"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/txtHoraNoticia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+
+                android:textAlignment="textEnd"
+                android:text="hora de la noticia"
+                android:textSize="13sp"
+                android:textStyle="italic" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
 

@@ -57,6 +57,7 @@ public class BottomSheetSettings extends BottomSheetDialogFragment {
         spnGrado.setAdapter(new ArrayAdapter<>(getContext(), R.layout.personalizar_spinner, arreglo_grado));
         spnGrupo.setAdapter(new ArrayAdapter<>(getContext(), R.layout.personalizar_spinner, arreglo_grupos));
 
+
         //El listener que detecta cuando cambia el spinner grado
         spnGrado.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -93,7 +94,6 @@ public class BottomSheetSettings extends BottomSheetDialogFragment {
         nivel = check[index].getText().toString();
 
         alumnos.getAlumnos(nivel, AlumnosFragment.rv_alumnos);
-
     }
 
     private void initComponents(View v) {
@@ -119,8 +119,6 @@ public class BottomSheetSettings extends BottomSheetDialogFragment {
             }
 
             if ((b) && (!check[index].getText().toString().equals(nivel))) {
-                Log.e("Entre", "checkbox");
-
                 switch (compoundButton.getText().toString()) {
                     case "Kínder":
                     case "Primaria":
@@ -138,6 +136,10 @@ public class BottomSheetSettings extends BottomSheetDialogFragment {
 
     private void fillData() {//Rellena los datos si ya ha existido una busqueda anterior
         check[index].setChecked(true);
+        if (grado.equals("5")) {
+            arreglo_grupos = new String[]{"A", "B", "C", "D"};
+            spnGrupo.setAdapter(new ArrayAdapter<>(getContext(), R.layout.personalizar_spinner, arreglo_grupos));
+        }
 
         for (int i = 0; i < arreglo_grupos.length; i++) {
             if (grupo.equals(arreglo_grupos[i])) {

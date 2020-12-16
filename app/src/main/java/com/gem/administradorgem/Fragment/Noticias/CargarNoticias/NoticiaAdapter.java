@@ -59,7 +59,7 @@ public class NoticiaAdapter extends RecyclerView.Adapter<NoticiaAdapter.NoticiaV
                 .show());
 
         holder.txtHora.setText(noticias.get(position).getFecha());
-
+        holder.txtNivel.setText(noticias.get(position).getNivel() + " " + noticias.get(position).getGrado() + noticias.get(position).getGrupo());
     }
 
     @Override
@@ -71,6 +71,7 @@ public class NoticiaAdapter extends RecyclerView.Adapter<NoticiaAdapter.NoticiaV
         protected TextView txtTitulo;
         protected CircleImageView imgNoticia;
         protected TextView txtHora;
+        protected TextView txtNivel;
         protected LinearLayout lnContenedor;
 
         public NoticiaViewHolder(@NonNull View itemView) {
@@ -79,7 +80,7 @@ public class NoticiaAdapter extends RecyclerView.Adapter<NoticiaAdapter.NoticiaV
             imgNoticia = itemView.findViewById(R.id.imgNoticia);
             txtHora = itemView.findViewById(R.id.txtHoraNoticia);
             lnContenedor = itemView.findViewById(R.id.lnContenedor);
-
+            txtNivel = itemView.findViewById(R.id.txtNivelNoticia);
         }
 
         void setInfo(ItemNoticia noticia, Context context) {

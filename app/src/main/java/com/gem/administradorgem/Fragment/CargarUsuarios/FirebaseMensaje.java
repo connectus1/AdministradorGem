@@ -56,13 +56,17 @@ class FirebaseMensaje {
                     break;
                 }
 
-                if (!mensaje.getNombre().equals("GEM"))
+                if (!mensaje.getNombre().equals("GEM")) {
                     adapter.addMensaje(mensaje);
+                    if (FragmentUsuarios.lottie.getVisibility() == View.VISIBLE) {
+                        FragmentUsuarios.lottie.setVisibility(View.INVISIBLE);
+                        FragmentUsuarios.lottie.pauseAnimation();
 
-                FragmentUsuarios.lottie.setVisibility(View.INVISIBLE);
-                FragmentUsuarios.lottie.pauseAnimation();
+                        FragmentUsuarios.txtChat.setVisibility(View.INVISIBLE);
+                    }
+                }
 
-                FragmentUsuarios.txtChat.setVisibility(View.INVISIBLE);
+
             }
 
         }

@@ -3,8 +3,13 @@ package com.gem.administradorgem.Fragment.Noticias;
 public class ItemNoticia {
     private String titulo;
     private String descripcion;
-    private String urlAlmacenamiento;
     private String fecha;
+
+    private String urlAlmacenamiento;
+
+    private String nivel;
+    private String grado;
+    private String grupo;
 
     public String getUrlAlmacenamiento() {
         return urlAlmacenamiento;
@@ -36,5 +41,29 @@ public class ItemNoticia {
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
+    }
+
+    public String getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(String nivel) {
+        this.nivel = nivel;
+    }
+
+    public String getGrado() {
+        return grado;
+    }
+
+    public void setGrado(String grado) {
+        this.grado = grado;
+    }
+
+    public String getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(String grupo) {
+        this.grupo = grupo;
     }
 }
