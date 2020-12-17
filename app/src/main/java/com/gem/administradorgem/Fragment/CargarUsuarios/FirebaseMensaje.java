@@ -35,6 +35,7 @@ class FirebaseMensaje {
 
     public void getMensajes(AdapterMensajes adapter, RecyclerView rv){
         this.adapter = adapter;
+
         rv.setVisibility(View.VISIBLE);
         reference.addChildEventListener(listener);
 
@@ -59,14 +60,19 @@ class FirebaseMensaje {
                 if (!mensaje.getNombre().equals("GEM")) {
                     adapter.addMensaje(mensaje);
                     if (FragmentUsuarios.lottie.getVisibility() == View.VISIBLE) {
+
                         FragmentUsuarios.lottie.setVisibility(View.INVISIBLE);
                         FragmentUsuarios.lottie.pauseAnimation();
-
                         FragmentUsuarios.txtChat.setVisibility(View.INVISIBLE);
+
+                    }
+                } else {
+                    if (adapter.getItemCount() == 0) {
+                        FragmentUsuarios.lottie.setVisibility(View.VISIBLE);
+                        FragmentUsuarios.lottie.playAnimation();
+                        FragmentUsuarios.txtChat.setVisibility(View.VISIBLE);
                     }
                 }
-
-
             }
 
         }

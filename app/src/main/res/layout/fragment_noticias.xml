@@ -15,7 +15,7 @@
         android:layout_gravity="center_vertical"
         android:layout_marginStart="10dp"
 
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:src="@drawable/ic_noticias"
 
         app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:text="Noticias\nSubir una nueva noticia"
 
         android:textSize="14sp"

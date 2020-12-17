@@ -63,7 +63,7 @@ class FirebaseAlumnos {
                         (alumno.getGrado().equals(BottomSheetSettings.grado)) ){
 
                     alumno.setId(snapshot.getKey());
-                    alumno.setId(eliminarGuion(alumno.getId()));
+                    alumno.setId(alumno.getId());
 
 
                     adapter.addAlumno(alumno);
@@ -110,19 +110,6 @@ class FirebaseAlumnos {
         }
     };
 
-    private String eliminarGuion(String id){
 
-        StringBuilder build = new StringBuilder();
-        for (int i = 1;i<id.length();i++){
-            build.append(id.charAt(i));
-        }
-
-        id = build.toString();
-
-        build.delete(0,build.length()-1);
-        build = null;
-
-        return id;
-    }
 
 }

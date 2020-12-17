@@ -40,14 +40,13 @@ public class AdapterMensajes extends RecyclerView.Adapter<AdapterMensajes.Mensaj
         holder.txtNombre.setText(mensajeList.get(position).getNombre());
 
         holder.lnContenedor.setLayoutParams(params);
-        holder.lnContenedor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(activity, ChatGEM.class);
-                i.putExtra("matricula", mensajeList.get(position).getId());
+        holder.lnContenedor.setOnClickListener(view -> {
+            Intent i = new Intent(activity, ChatGEM.class);
+            i.putExtra("matricula", mensajeList.get(position).getId());
+            i.putExtra("nombre", mensajeList.get(position).getNombre());
+            activity.startActivity(i);
 
-                activity.startActivity(i);
-            }
+            removeMensaje(mensajeList.get(position));
         });
     }
 
@@ -60,6 +59,7 @@ public class AdapterMensajes extends RecyclerView.Adapter<AdapterMensajes.Mensaj
         mensajeList.add(mensaje);
         notifyItemInserted(mensajeList.size());
     }
+
 
     public void removeMensaje(Mensaje mensaje){
         for (int i =0;i<mensajeList.size();i++){

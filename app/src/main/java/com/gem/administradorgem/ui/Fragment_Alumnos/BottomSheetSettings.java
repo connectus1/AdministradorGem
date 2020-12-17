@@ -136,6 +136,7 @@ public class BottomSheetSettings extends BottomSheetDialogFragment {
 
     private void fillData() {//Rellena los datos si ya ha existido una busqueda anterior
         check[index].setChecked(true);
+
         if (grado.equals("5")) {
             arreglo_grupos = new String[]{"A", "B", "C", "D"};
             spnGrupo.setAdapter(new ArrayAdapter<>(getContext(), R.layout.personalizar_spinner, arreglo_grupos));

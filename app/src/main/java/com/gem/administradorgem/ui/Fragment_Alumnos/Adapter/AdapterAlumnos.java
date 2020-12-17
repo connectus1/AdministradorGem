@@ -44,8 +44,10 @@ public class AdapterAlumnos extends RecyclerView.Adapter<AdapterAlumnos.AlumnosV
         holder.txtMatricula.setText(alumnoList.get(position).getMatricula());
 
         holder.lnContentenedor.setOnClickListener(view -> {
+
             Intent i = new Intent(activity, ChatGEM.class);
             i.putExtra("matricula", alumnoList.get(position).getId());
+            i.putExtra("nombre", alumnoList.get(position).getNombre());
             activity.startActivity(i);
         });
     }

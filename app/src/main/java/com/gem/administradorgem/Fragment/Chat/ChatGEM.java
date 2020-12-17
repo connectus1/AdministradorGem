@@ -4,8 +4,11 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,11 +18,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.gem.administradorgem.Fragment.Chat.Adapter.ChatAdapter;
 import com.gem.administradorgem.Fragment.Chat.Adapter.itemChat;
+import com.gem.administradorgem.Fragment.Chat.BottomSheetAlumno.BottomSheetAlumno;
 import com.gem.administradorgem.Fragment.Chat.DatabaseSQL.DatabaseSql;
 import com.gem.administradorgem.Fragment.Chat.FirebaseChat.FirebaseMessage;
 import com.gem.administradorgem.Internet;
 import com.gem.administradorgem.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Date;
 
@@ -37,6 +46,9 @@ public class ChatGEM extends AppCompatActivity {
 
     private FirebaseMessage firebase;
     private DatabaseSql sql;
+
+    private ImageView btnInfo;
+    private TextView txtNombre;
 
     private RecyclerView.OnChildAttachStateChangeListener addChild = new RecyclerView.OnChildAttachStateChangeListener() {
         @Override
@@ -70,6 +82,8 @@ public class ChatGEM extends AppCompatActivity {
         initComponents();
         setAdapter();
         firebase.getMensaje(adapter);
+
+        txtNombre.setText(obtenerNombre(getIntent().getExtras()));
 
         //*************************************************
         //Al presionar el boton sube el mensaje a la base de datos y borra el editText
@@ -116,6 +130,19 @@ public class ChatGEM extends AppCompatActivity {
         //******************************
         rvChat.addOnChildAttachStateChangeListener(addChild);
 
+        //*************************************
+        //Listener cuando se presiona el boton pueda mostrar informacion del alumno
+        //****************************************
+        btnInfo.setOnClickListener(view -> {
+            BottomSheetAlumno sheet = new BottomSheetAlumno(matricula.toString());
+            sheet.show(getSupportFragmentManager(), "Alumno");
+        });
+
+        //*********************************
+        //Verifica que sea un alumno y poder desplegar su informacion; en caso contrario
+        //no se mostrara la opcion
+        //*********************************
+        verificarAlumno();
 
     }
 
@@ -139,6 +166,9 @@ public class ChatGEM extends AppCompatActivity {
 
         firebase = new FirebaseMessage(matricula.toString(), ChatGEM.this);
         sql = new DatabaseSql(matricula.toString(), ChatGEM.this);
+
+        btnInfo = findViewById(R.id.btnInfoChat);
+        txtNombre = findViewById(R.id.txtNombreChat);
     }
 
     //**********************
@@ -164,7 +194,36 @@ public class ChatGEM extends AppCompatActivity {
 
     }
 
+    //********************************
+    //El objeto DatabaseReference solo se ocupa para verificar que no este registrado
+    //en la base de los tutores, despues se elimina su ValueEventListener y se iguala a null
+    //***************************
+    private DatabaseReference reference;
+    private ValueEventListener listener = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            if (snapshot.getValue() != null) {
+                btnInfo.setVisibility(View.INVISIBLE);
+                reference.removeEventListener(listener);
+                reference = null;
+            }
+        }
 
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+
+        }
+    };
+
+    private void verificarAlumno() {
+        reference = FirebaseDatabase.getInstance("https://registrogem.firebaseio.com/").getReference("Registro_Tutor");
+        Log.e("ref", reference.child(matricula.toString()).toString());
+        reference.child(matricula.toString()).addValueEventListener(listener);
+    }
+
+    //******************************
+    //El metodo acomoda los datos y genera un objeto mensaje
+    //**********************************
     private itemChat generarMensaje() {
         /*Declaramos un objeto de tipo itemChat que son los mensajes*/
         itemChat message;
@@ -197,6 +256,16 @@ public class ChatGEM extends AppCompatActivity {
             this.finish();
         }
         return matricula;
+    }
+
+    private String obtenerNombre(Bundle extras) {
+        try {
+            return extras.getString("nombre");
+        } catch (NullPointerException e) {
+            Toast.makeText(this, "Ha ocurrido un error al cargar", Toast.LENGTH_SHORT).show();
+            this.finish();
+        }
+        return null;
     }
 
     private CharSequence obtenerFecha() {

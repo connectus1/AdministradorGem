@@ -39,6 +39,7 @@ public class AdapterTutor extends RecyclerView.Adapter<AdapterTutor.TutorViewHol
         holder.lnContenedor.setOnClickListener(view -> {
             Intent i = new Intent(activity, ChatGEM.class);
             i.putExtra("matricula", tutorList.get(position).getId());
+            i.putExtra("nombre", tutorList.get(position).getNombre());
             activity.startActivity(i);
         });
         holder.txtCantHijos.setText("Hijos: " + tutorList.get(position).getHijos().size());

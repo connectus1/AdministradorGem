@@ -20,6 +20,51 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo_gem" />
 
+
+    <LinearLayout
+        android:id="@+id/lnContenedor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/colorTittle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/icono_alumno" />
+
+        <TextView
+            android:id="@+id/txtNombreChat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nombre_Alumno"
+            android:textColor="@color/blanco"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_weight="1"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="2dp" />
+
+
+        <ImageView
+            android:id="@+id/btnInfoChat"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="2dp"
+            app:srcCompat="@drawable/ic_informacion" />
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvChat"
         android:layout_width="match_parent"
@@ -29,8 +74,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toBottomOf="@id/lnContenedor" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"

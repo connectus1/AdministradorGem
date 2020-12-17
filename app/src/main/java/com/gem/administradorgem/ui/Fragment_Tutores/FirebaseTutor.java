@@ -73,7 +73,7 @@ public class FirebaseTutor {
                         //Compara que al menos uno de los hijos sea igual a la matricula
                         if (tutor.getHijos().get(i).getMatricula().equals(matricula)) {
                             //Si se cumples los valores anteriores entonces si es un tutor perteneciente a ese alumno
-                            tutor.setId(eliminarGuion(snapshot.getKey()));
+                            tutor.setId(snapshot.getKey());
                             adapter.addTutor(tutor);
 
                             ocultarLottie();
@@ -91,7 +91,7 @@ public class FirebaseTutor {
                                 && (tutor.getHijos().get(i).getGrupo().equals(BottomSheetSettingsTutor.grupo))) {
 
                             //Si se cumples los valores anteriores entonces si es un tutor perteneciente a ese grupo
-                            tutor.setId(eliminarGuion(snapshot.getKey()));
+                            tutor.setId(snapshot.getKey());
                             adapter.addTutor(tutor);
 
                             ocultarLottie();
@@ -122,20 +122,20 @@ public class FirebaseTutor {
         }
     };
 
-    private String eliminarGuion(String id){
-
-        StringBuilder build = new StringBuilder();
-        for (int i = 1;i<id.length();i++){
-            build.append(id.charAt(i));
-        }
-
-        id = build.toString();
-
-        build.delete(0, build.length() - 1);
-        build = null;
-
-        return id;
-    }
+//    private String eliminarGuion(String id){
+//
+//        StringBuilder build = new StringBuilder();
+//        for (int i = 1;i<id.length();i++){
+//            build.append(id.charAt(i));
+//        }
+//
+//        id = build.toString();
+//
+//        build.delete(0, build.length() - 1);
+//        build = null;
+//
+//        return id;
+//    }
 
     //Este metodo es mandado a llamar cuando el adapter necesita cargar informacion
     private void ocultarLottie() {
